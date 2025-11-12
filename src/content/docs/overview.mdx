@@ -1,0 +1,82 @@
+---
+title: Overview - Databricks Well-Architected Framework
+description: Introduction to deployment types and architectural patterns for building intelligent data products on Databricks
+---
+
+# Well-Architected Framework: Designing Intelligent Data Products on Databricks
+
+The Databricks Well-Architected Framework provides guidance and best practices for designing, deploying, and operating intelligent data products on the Databricks platform. This framework helps you make informed architectural decisions based on your specific requirements around data residency, management overhead, intellectual property protection, and scalability needs.
+
+## Deployment Types
+
+When building on Databricks, you can choose from several deployment models, each with distinct characteristics and trade-offs:
+
+### SaaS Deployment
+A fully managed, multi-tenant deployment where Databricks manages the infrastructure and platform operations. You can deploy either as workspace-per-customer or multi-tenant workspace configurations.
+
+**Best for:** Organizations prioritizing rapid deployment, scalability, and minimal operational overhead.
+
+### Managed Hosted Deployment
+A deployment model where the control plane is managed by Databricks, but the data plane resides in your cloud account. This model provides greater control over data residency while maintaining managed platform services.
+
+**Best for:** Organizations with specific data residency, compliance, or governance requirements, commonly used in government and regulated industries.
+
+### Shipped Deployment
+A deployment where customers manage their own Databricks instance, with full control over both control plane and data plane. Requires a Databricks license to operate.
+
+**Best for:** Organizations requiring maximum control, operating in air-gapped environments, or with strict data sovereignty requirements.
+
+## Choosing the Right Deployment Model
+
+The choice of deployment model depends on several key factors:
+
+| Factor | SaaS | Managed Hosted | Shipped |
+|--------|------|----------------|---------|
+| **Data Residency** | Limited control | Full control | Full control |
+| **Level of Management** | Fully managed by Databricks | Shared management | Customer managed |
+| **Safeguard IP** | Shared environment | Isolated environment | Fully isolated |
+| **Scale/Velocity** | High scalability, rapid deployment | Moderate scalability | High scalability with operational overhead |
+
+### Key Considerations
+
+#### Data Residency
+If your organization has strict requirements about where data must reside (specific regions, countries, or cloud accounts), Managed Hosted or Shipped deployments provide the necessary control.
+
+#### Level of Management
+Consider your team's capacity and expertise in managing infrastructure:
+- **SaaS**: Minimal operational burden, focus on data products
+- **Managed Hosted**: Moderate operational requirements
+- **Shipped**: Full operational responsibility
+
+#### Protecting Intellectual Property
+For organizations building proprietary data products or algorithms:
+- **SaaS**: Appropriate for most use cases with proper access controls
+- **Managed Hosted**: Better isolation with dedicated resources
+- **Shipped**: Maximum isolation and control
+
+#### Velocity and Scale
+Consider your growth trajectory and time-to-market requirements:
+- **SaaS**: Fastest time to value with elastic scaling
+- **Managed Hosted**: Balanced approach with some operational overhead
+- **Shipped**: Requires upfront infrastructure setup
+
+## Framework Structure
+
+This framework provides detailed guidance for each deployment model across key architectural pillars:
+
+- **Workspace & Multi-Tenancy**: Strategies for organizing workspaces and supporting multiple customers
+- **Product Design**: Best practices for creating intuitive, persona-driven products
+- **Data Isolation**: Approaches to data segregation and security
+- **Hub & Spoke Model**: Patterns for distributing data across environments
+- **Security & Authentication**: Identity management and access control
+- **Automation**: Infrastructure as code and deployment automation
+- **Cost Management**: Chargeback, tagging, and cost optimization
+- **Scale & Limits**: Understanding platform limits and scaling strategies
+
+## Next Steps
+
+Choose your deployment model to explore detailed architectural guidance:
+
+- [SaaS Deployment](/saas/overview/)
+- [Managed Hosted Deployment](/managed-hosted/overview/)
+- [Shipped Deployment](/shipped/overview/)
