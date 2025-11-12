@@ -1,0 +1,131 @@
+{
+  "main": [
+    {
+      "label": "Overview",
+      "slug": "overview"
+    },
+    {
+      "label": "SaaS Deployment",
+      "items": [
+        {
+          "label": "Overview",
+          "slug": "saas/overview"
+        },
+        {
+          "label": "Workspace & Multi-Tenancy",
+          "slug": "saas/workspace-multi-tenancy"
+        },
+        {
+          "label": "Product Design",
+          "slug": "saas/product-design"
+        },
+        {
+          "label": "Data Isolation",
+          "slug": "saas/data-isolation"
+        },
+        {
+          "label": "Hub & Spoke Model",
+          "slug": "saas/hub-spoke"
+        },
+        {
+          "label": "Security & Authentication",
+          "slug": "saas/security"
+        },
+        {
+          "label": "Automation",
+          "slug": "saas/automation"
+        },
+        {
+          "label": "Cost Management",
+          "slug": "saas/cost-management"
+        },
+        {
+          "label": "Scale & Limits",
+          "slug": "saas/scale-limits"
+        }
+      ]
+    },
+    {
+      "label": "Managed Hosted",
+      "items": [
+        {
+          "label": "Overview",
+          "slug": "managed-hosted/overview"
+        },
+        {
+          "label": "Workspace & Multi-Tenancy",
+          "slug": "managed-hosted/workspace-multi-tenancy"
+        },
+        {
+          "label": "Product Design",
+          "slug": "managed-hosted/product-design"
+        },
+        {
+          "label": "Data Isolation",
+          "slug": "managed-hosted/data-isolation"
+        },
+        {
+          "label": "Hub & Spoke Model",
+          "slug": "managed-hosted/hub-spoke"
+        },
+        {
+          "label": "Security & Authentication",
+          "slug": "managed-hosted/security"
+        },
+        {
+          "label": "Automation",
+          "slug": "managed-hosted/automation"
+        },
+        {
+          "label": "Cost Management",
+          "slug": "managed-hosted/cost-management"
+        },
+        {
+          "label": "Scale & Limits",
+          "slug": "managed-hosted/scale-limits"
+        }
+      ]
+    },
+    {
+      "label": "Shipped Deployment",
+      "items": [
+        {
+          "label": "Overview",
+          "slug": "shipped/overview"
+        },
+        {
+          "label": "Workspace & Multi-Tenancy",
+          "slug": "shipped/workspace-multi-tenancy"
+        },
+        {
+          "label": "Product Design",
+          "slug": "shipped/product-design"
+        },
+        {
+          "label": "Data Isolation",
+          "slug": "shipped/data-isolation"
+        },
+        {
+          "label": "Hub & Spoke Model",
+          "slug": "shipped/hub-spoke"
+        },
+        {
+          "label": "Security & Authentication",
+          "slug": "shipped/security"
+        },
+        {
+          "label": "Automation",
+          "slug": "shipped/automation"
+        },
+        {
+          "label": "Cost Management",
+          "slug": "shipped/cost-management"
+        },
+        {
+          "label": "Scale & Limits",
+          "slug": "shipped/scale-limits"
+        }
+      ]
+    }
+  ]
+}
