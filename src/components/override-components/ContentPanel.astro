@@ -1,6 +1,32 @@
+---
+import PageActions from "./PageActions.astro";
+
+const { entry } = Astro.locals.starlightRoute;
+// Only show PageActions on documentation pages (not homepage/hero pages)
+const isDocPage = entry.data.hero === undefined;
+
+// Use a simple heuristic: check if this panel will contain main content
+// The second ContentPanel contains MarkdownContent which wraps the slot
+// We'll add a data attribute and use CSS/JS to show only in the second instance
+---
+
 <div class="content-panel">
-	<div class="sl-container"><slot /></div>
+	<div class="sl-container">
+		{isDocPage && <PageActions />}
+		<slot />
+	</div>
 </div>
+
+<script>
+	// Hide the first PageActions instance, keep only the second one
+	document.addEventListener('DOMContentLoaded', () => {
+		const pageActionsElements = document.querySelectorAll('.page-actions');
+		if (pageActionsElements.length > 1) {
+			// Hide the first instance, keep the second
+			pageActionsElements[0].style.display = 'none';
+		}
+	});
+</script>
 
 <style>
 	@layer starlight.core {
