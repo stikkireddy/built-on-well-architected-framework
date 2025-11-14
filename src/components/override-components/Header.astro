@@ -17,6 +17,21 @@ const { main }: { main: any[] } = menu;
 const pathname = Astro.request.url;
 
 const hasSidebar = Astro.locals.starlightRoute.hasSidebar;
+
+// Helper function to add BASE_URL to internal links
+const baseUrl = import.meta.env.BASE_URL;
+function prependBaseUrl(url: string): string {
+  // Don't modify external URLs (http/https) or anchor links
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('#')) {
+    return url;
+  }
+  // Ensure we don't double-add the base URL
+  if (url.startsWith(baseUrl)) {
+    return url;
+  }
+  // Add base URL to internal links
+  return baseUrl + url.replace(/^\//, '');
+}
 ---
 
 <nav class="navbar container">
@@ -72,7 +87,7 @@ const hasSidebar = Astro.locals.starlightRoute.hasSidebar;
                 {menu.children?.map((child: { url: string; name: string }) => (
                   <li class="nav-dropdown-item">
                     <a
-                      href={child.url}
+                      href={prependBaseUrl(child.url)}
                       aria-label={child.name}
                       class={`nav-dropdown-link block ${
                         (pathname === `${child.url}/` ||
@@ -89,7 +104,7 @@ const hasSidebar = Astro.locals.starlightRoute.hasSidebar;
           ) : (
             <li class="nav-item">
               <a
-                href={menu.url}
+                href={prependBaseUrl(menu.url)}
                 class={`nav-link block ${
                   (pathname === `${menu.url}/` || pathname === menu.url) &&
                   "active"
@@ -107,7 +122,7 @@ const hasSidebar = Astro.locals.starlightRoute.hasSidebar;
         <li class="mt-4 inline-block lg:hidden">
           <a
             class="btn btn-outline-primary btn-sm"
-            href={navigation_button.link}
+            href={prependBaseUrl(navigation_button.link)}
           >
             {navigation_button.label}
           </a>
@@ -135,7 +150,7 @@ const hasSidebar = Astro.locals.starlightRoute.hasSidebar;
       navigation_button.enable && (
         <a
           class="btn btn-outline-primary hidden! lg:inline-block!"
-          href={navigation_button.link}
+          href={prependBaseUrl(navigation_button.link)}
         >
           {navigation_button.translations
             ? // @ts-ignore

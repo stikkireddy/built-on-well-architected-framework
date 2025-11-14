@@ -11,6 +11,21 @@ const menu = await getTranslations(locale || "en");
 
 const footer = menu.footer;
 const currentLocal = Astro.currentLocale || "en";
+const baseUrl = import.meta.env.BASE_URL;
+
+// Helper function to add BASE_URL to internal links
+function prependBaseUrl(url: string): string {
+  // Don't modify external URLs (http/https) or anchor links
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('#')) {
+    return url;
+  }
+  // Ensure we don't double-add the base URL
+  if (url.startsWith(baseUrl)) {
+    return url;
+  }
+  // Add base URL to internal links
+  return baseUrl + url.replace(/^\//, '');
+}
 ---
 
 <footer>
@@ -23,7 +38,7 @@ const currentLocal = Astro.currentLocale || "en";
             <ul>
               {footer.community?.links.map((link: any) => (
                 <li>
-                  <a href={link.url}>{link.name}</a>
+                  <a href={prependBaseUrl(link.url)}>{link.name}</a>
                 </li>
               ))}
             </ul>
@@ -37,7 +52,7 @@ const currentLocal = Astro.currentLocale || "en";
             <ul>
               {footer.help_links?.links.map((link: any) => (
                 <li>
-                  <a href={link.url}>{link.name}</a>
+                  <a href={prependBaseUrl(link.url)}>{link.name}</a>
                 </li>
               ))}
             </ul>
@@ -51,7 +66,7 @@ const currentLocal = Astro.currentLocale || "en";
             <ul>
               {footer.company?.links.map((link: any) => (
                 <li>
-                  <a href={link.url}>{link.name}</a>
+                  <a href={prependBaseUrl(link.url)}>{link.name}</a>
                 </li>
               ))}
             </ul>
@@ -95,7 +110,7 @@ const currentLocal = Astro.currentLocale || "en";
             <ul class="social-icons">
               {social.main.map((item) => (
                 <li>
-                  <a href={item.href} aria-label={item.label}>
+                  <a href={prependBaseUrl(item.href)} aria-label={item.label}>
                     <Icon
                       name={item?.icon as any}
                       color="var(--sl-color-white)"
@@ -111,7 +126,7 @@ const currentLocal = Astro.currentLocale || "en";
     </div>
     <div class="bottom-footer">
       <p set:html={markdownify(config?.params?.copyright)} />
-      <a href={currentLocal + "/privacy-policy"}
+      <a href={baseUrl + currentLocal + "/privacy-policy"}
         >{Astro.locals.t("footer.privacy", "Privacy Policy")}</a
       >
     </div>

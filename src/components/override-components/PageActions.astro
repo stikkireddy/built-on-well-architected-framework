@@ -4,9 +4,9 @@ import { Icon } from "@astrojs/starlight/components";
 const { entry } = Astro.locals.starlightRoute;
 const currentPath = Astro.url.pathname;
 
-// Build the full URL for the page
-const baseUrl = "https://www.firefly-analytics.com";
-const fullUrl = `${baseUrl}${currentPath}`;
+// Build the full URL for the page using Astro site config
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || '';
+const fullUrl = `${siteUrl}${currentPath}`;
 
 // Create the ChatGPT URL with dynamic page URL
 const chatGptUrl = `https://chatgpt.com/?hints=search&prompt=${encodeURIComponent(`Read ${fullUrl}, I want to ask questions about it.`)}`;
