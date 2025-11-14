@@ -22,6 +22,8 @@ export default defineConfig({
   image: {
     service: { entrypoint: "astro/assets/services/noop" },
   },
+  site: 'https://stikkireddy.github.io',
+  base: '/built-on-well-architected-framework',
   integrations: [
     starlight({
       title,
