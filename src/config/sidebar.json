@@ -42,6 +42,10 @@
         {
           "label": "Scale & Limits",
           "slug": "saas/scale-limits"
+        },
+        {
+          "label": "Building Integrations",
+          "slug": "saas/building-integrations"
         }
       ]
     },
@@ -83,6 +87,10 @@
         {
           "label": "Scale & Limits",
           "slug": "managed-hosted/scale-limits"
+        },
+        {
+          "label": "Building Integrations",
+          "slug": "managed-hosted/building-integrations"
         }
       ]
     },
@@ -124,6 +132,10 @@
         {
           "label": "Scale & Limits",
           "slug": "shipped/scale-limits"
+        },
+        {
+          "label": "Building Integrations",
+          "slug": "shipped/building-integrations"
         }
       ]
     }
