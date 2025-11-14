@@ -2,5 +2,10 @@
   "page.nextLink": "Page suivante",
   "page.prevLink": "Page précédente",
   "hero.popular": "Populaire",
-  "footer.privacy": "Politique de confidentialité"
+  "footer.privacy": "Politique de confidentialité",
+  "pageActions.copyMarkdown": "Copier le Markdown",
+  "pageActions.openIn": "Ouvrir dans",
+  "pageActions.openInChatGPT": "Ouvrir dans ChatGPT",
+  "pageActions.openInClaude": "Ouvrir dans Claude",
+  "pageActions.openInCursor": "Ouvrir dans Cursor"
 }
