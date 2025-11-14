@@ -114,9 +114,10 @@ const is404 = Astro.locals.starlightRoute?.id === "404";
   // make image element and add the path to src
   if (iconElements) {
     const iconPath = iconElements.getAttribute("data-icon-path");
+    const baseUrl = import.meta.env.BASE_URL;
 
     const img = document.createElement("img");
-    img.src = `/${iconPath}` || "";
+    img.src = `${baseUrl}${iconPath}` || "";
     img.alt = "icon";
     img.className =
       "hidden lg:inline-block size-20 -mb-2 rounded-2xl animate-[bounce_2s_ease-in-out_infinite]";
