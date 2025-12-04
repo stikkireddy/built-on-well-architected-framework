@@ -1,0 +1,77 @@
+---
+title: Integration Requirements
+description: Minimum technical requirements for validated Technology Partner integrations
+---
+
+This page describes the minimum technical requirements Databricks enforces for validated Technology Partner integrations across all integration modalities — APIs, SDKs, drivers/connectors, jobs, CLIs, or other tooling. Each integration must:
+
+- Enable Partner Telemetry for Attribution and Operational visibility
+- Use OAuth-based Authentication
+- Leverage Unity Catalog (UC) for all data access to ensure secure, governed, and consistent access to customer data across all Databricks workspaces
+
+| Area | Requirement | Typical Evidence/Artifacts |
+| --- | --- | --- |
+| [Telemetry](#telemetry) | Programmatic partner `User-Agent` tagging to provide consistent telemetry across modalities | User-Agent value(s), sample telemetry event(s), description of where it's set |
+| [OAuth](#oauth) | Support Token Federation, U2M w/ PKCE, and Databricks M2M | OAuth flow diagram, Redirect URIs, Scopes, Token storage/Rotation notes |
+| [Unity Catalog](#unity-catalog) | Use UC namespaces and interfaces; respect ACLs; use UC Volumes for staging; and publish metadata/lineage | Example calls/SQL, UC Volumes flow, ACL/privilege matrix |
+
+---
+
+## Telemetry
+
+Telemetry is required for all partner integrations, enabling Databricks and its partners to understand integration usage, measure joint business impact, identify joint customers, and quickly diagnose operational issues across environments.
+
+**Partner User-Agent (required)** — Programmatically embed a stable partner `User-Agent` telemetry identifier in every Databricks API call, driver/SQL connection, SDK/connector call, job, CLI invocation, or other integration request originating from your product. Databricks utilizes this for partner attribution and reporting purposes.
+
+---
+
+## OAuth
+
+OAuth is mandatory for all ISV Partner integrations with Databricks and is the standard mechanism for secure production authentication. Databricks supports OAuth 2.0 flows for both user-driven (U2M) and automated (M2M) interactions, allowing partners to protect customer data while enabling both interactive and programmatic access.
+
+### Supported OAuth Flows
+
+| Industry Term | Databricks Term | Use Case |
+| --- | --- | --- |
+| User Interactive Flow (Authorization Code Flow with PKCE) | User-to-Machine (U2M) | Desktop Apps, SaaS/Cloud Apps, Multi-user scenarios |
+| Client Credentials Flow | Machine-to-Machine (M2M) | Automation, Service Principals, Federated Workloads |
+
+### User Interactive Flow (User-to-Machine)
+
+**Purpose**: Used when a user initiates an action and authenticates with their own identity through a browser-based OAuth flow, allowing the partner app to act on behalf of that user.
+
+**Implementation**: Partners can support User Interactive Flow using one of two patterns, depending on product design:
+
+1. **Apps with Local-Only Identity** (Single-User and Desktop tools, etc.) - use a browser-based OAuth authentication flow that completes the token exchange through a local loopback URL (e.g., `http://localhost:8020`), with the access token generated using the default 1-hour TTL.
+   - For details, please refer to the [JDBC](https://docs.databricks.com/aws/en/integrations/jdbc/authentication#oauth-user-to-machine-u2m-authentication) and [ODBC](https://docs.databricks.com/aws/en/integrations/jdbc/authentication#oauth-user-to-machine-u2m-authentication) documentation.
+
+2. **Apps with centralized identity management** (such as SaaS/Cloud/Multi-user Apps) - required to integrate using either [Databricks OIDC U2M Flow](https://docs.databricks.com/aws/en/dev-tools/auth/oauth-u2m#manually-generate-oauth-u2m-access-tokens) or [Account Token Federation Flow](https://docs.databricks.com/aws/en/integrations/odbc/authentication#databricks-oauth-user-to-machine-u2m-authentication) to obtain tokens for multiple users, including headless scenarios, securely.
+
+### Client Credential Flow (Machine-to-Machine)
+
+**Purpose**: Enables automated, non-interactive authentication between systems, typically using service identities or principals, so jobs, services, and scripts can access Databricks without a signed-in user.
+
+**Implementation**: Partners can integrate with [Token Federation Flow](https://docs.databricks.com/aws/en/dev-tools/auth/oauth-federation) (recommended, supports [Workload Identity Federation](https://docs.databricks.com/aws/en/dev-tools/auth/oauth-federation-policy#workload-identity-federation)) or [Databricks OIDC M2M Flow](https://docs.databricks.com/aws/en/dev-tools/auth/oauth-m2m).
+
+### Security and Lifecycle Recommendations
+
+Request least-privilege scopes, persist tokens securely, rotate refresh tokens, use PKCE for added protection, never log tokens (ensure redaction), support revocation, and provide a clear disconnect/re-auth experience.
+
+---
+
+## Unity Catalog
+
+If your integration needs to read, write, stage, or manage any type of data asset, then you must register and operate on those assets in Unity Catalog. Data assets that are required to be managed within Unity Catalog include:
+
+- Structured and tabular data - tables, views, materialized views, metric views, UDFs
+- Unstructured files - images, documents, logs, binaries, ingestion files
+- ML models
+
+In addition, these are the mandatory practices when integrating with Unity Catalog:
+
+- **UC semantics** — Operate on the UC three-level namespace `<catalog>.<schema>.<table>` and use UC interfaces (APIs, drivers, connectors, or in-product UI) so permissions, audit logs, and metadata are preserved.
+- **Least privilege** — Design workflows for non-admin users and document the minimum privileges customers must grant.
+- **Staging / non-tabular data** — Use Unity Catalog Volumes for governed staging of files and non-tabular workloads (typical flow: customer creates catalog and grants permission → partner creates schema/volume → partner writes files → ingest into Delta). Staging to cloud storage buckets is not eligible for validation.
+- **Metadata and lineage** — Read and publish schema, tags, and lineage via Unity Catalog so customers retain a single source of truth.
+
+For a general overview of Unity Catalog, refer to the [Data Governance documentation](https://docs.databricks.com/aws/en/data-governance/).

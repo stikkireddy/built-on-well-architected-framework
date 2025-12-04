@@ -5,6 +5,19 @@
       "slug": "overview"
     },
     {
+      "label": "Building Integrations",
+      "items": [
+        {
+          "label": "Getting Started",
+          "slug": "building-integrations/getting-started"
+        },
+        {
+          "label": "Integration Requirements",
+          "slug": "building-integrations/integration-requirements"
+        }
+      ]
+    },
+    {
       "label": "SaaS Deployment",
       "items": [
         {
