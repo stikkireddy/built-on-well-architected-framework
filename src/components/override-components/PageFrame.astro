@@ -5,7 +5,9 @@ import CTA from "../CTA.astro";
 import SidebarNav from "../SidebarNav.astro";
 import ImageMod from "../ImageMod.astro";
 
-const { hasSidebar } = Astro.locals.starlightRoute;
+const { hasSidebar, entry } = Astro.locals.starlightRoute;
+const noCTASlugs = ["about"]
+const showCTA = !noCTASlugs.includes(entry.slug);
 ---
 
 <div class="page sl-flex">
@@ -70,7 +72,7 @@ const { hasSidebar } = Astro.locals.starlightRoute;
       <slot />
     </div>
   </div>
-  {!hasSidebar && <CTA />}
+  {!hasSidebar && showCTA && <CTA />}
   {!hasSidebar && <Footer />}
 </div>
 
