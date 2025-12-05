@@ -8,6 +8,7 @@ import config from "./src/config/config.json" assert { type: "json" };
 import social from "./src/config/social.json";
 import locals from "./src/config/locals.json";
 import sidebar from "./src/config/sidebar.json";
+import rehypeMermaid from 'rehype-mermaid'
 
 import { fileURLToPath } from "url";
 
@@ -24,6 +25,10 @@ export default defineConfig({
   },
   site: 'https://stikkireddy.github.io',
   base: '/built-on-well-architected-framework/',
+  markdown: {
+    //  add to your existing array plugins
+    rehypePlugins: [rehypeMermaid]
+  },
   integrations: [
     starlight({
       title,
@@ -54,7 +59,7 @@ export default defineConfig({
     }),
   ],
   vite: {
-    plugins: [tailwindcss(),viewTransitions()],
+    plugins: [tailwindcss(), viewTransitions()],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
