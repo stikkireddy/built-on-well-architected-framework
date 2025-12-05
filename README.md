@@ -69,7 +69,7 @@ Add content to your file:
 
 ```markdown
 ---
-title: Getting Started with Us
+title: Getting Started
 description: Welcome to your documentation site
 ---
 
