@@ -19,9 +19,23 @@ const cursorUrl = `https://cursor.com/link/prompt?text=${encodeURIComponent(`Rea
 
 // Get the raw markdown source path
 const sourceFilePath = entry.id;
+
+// Get the raw markdown body content
+const rawMarkdownBody = entry.body || '';
+
+// Build frontmatter from entry.data
+const frontmatterLines: string[] = [];
+if (entry.data) {
+  if (entry.data.title) frontmatterLines.push(`title: ${entry.data.title}`);
+  if (entry.data.description) frontmatterLines.push(`description: ${entry.data.description}`);
+}
+const frontmatter = frontmatterLines.length > 0
+  ? `---\n${frontmatterLines.join('\n')}\n---\n\n`
+  : '';
+const rawMarkdown = frontmatter + rawMarkdownBody;
 ---
 
-<div class="page-actions print:hidden" data-page-actions>
+<div class="page-actions print:hidden" data-page-actions data-raw-markdown={rawMarkdown}>
   <button
     class="copy-markdown-btn btn-outline-primary action-button"
     data-source-path={sourceFilePath}
@@ -206,18 +220,14 @@ const sourceFilePath = entry.id;
         if (copyButton) {
           copyButton.addEventListener("click", async () => {
         try {
-          // Get the main content element
-          const mainContent = document.querySelector("main");
-          if (!mainContent) {
-            throw new Error("Could not find main content");
+          // Get the raw markdown from the data attribute
+          const rawMarkdown = container.dataset.rawMarkdown;
+          if (!rawMarkdown) {
+            throw new Error("Could not find raw markdown content");
           }
 
-          // Extract text content from the main element
-          // This will get the rendered content, not the raw markdown
-          const textContent = mainContent.innerText;
-
             // Copy to clipboard
-            await navigator.clipboard.writeText(textContent);
+            await navigator.clipboard.writeText(rawMarkdown);
 
             // Update button text temporarily
             const originalText = copyButton.querySelector("span")?.textContent;
