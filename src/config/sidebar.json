@@ -1,154 +1,157 @@
 {
   "main": [
     {
-      "label": "Overview",
-      "slug": "overview"
-    },
-    {
-      "label": "Building Integrations",
+      "label": "Introduction",
       "items": [
         {
-          "label": "Getting Started",
-          "slug": "building-integrations/getting-started"
+          "label": "Purpose of this Framework",
+          "slug": "introduction/purpose"
         },
+        {
+          "label": "Definition of Built On Databricks",
+          "slug": "introduction/definition"
+        },
+        {
+          "label": "Goals",
+          "slug": "introduction/goals"
+        }
+      ]
+    },
+    {
+      "label": "SaaS Deployment Models",
+      "items": [
+        {
+          "label": "Multi-Workspace (Per-Tenant)",
+          "slug": "deployment-models/multi-workspace"
+        },
+        {
+          "label": "Single-Workspace (Multi-Tenant)",
+          "slug": "deployment-models/single-workspace"
+        },
+        {
+          "label": "Partner-Hosted SaaS",
+          "slug": "deployment-models/partner-hosted"
+        },
+        {
+          "label": "Sidecar / Embedded AI Patterns",
+          "slug": "deployment-models/sidecar-embedded"
+        },
+        {
+          "label": "Customer Managed Workspace",
+          "slug": "deployment-models/customer-managed"
+        }
+      ]
+    },
+    {
+      "label": "Well-Architected Pillars",
+      "items": [
+        {
+          "label": "Governance",
+          "slug": "pillars/governance"
+        },
+        {
+          "label": "Identity & Access",
+          "slug": "pillars/identity-access"
+        },
+        {
+          "label": "Data Isolation",
+          "slug": "pillars/data-isolation"
+        },
+        {
+          "label": "Secure Sharing",
+          "slug": "pillars/secure-sharing"
+        },
+        {
+          "label": "Multi-Tenancy",
+          "slug": "pillars/multi-tenancy"
+        },
+        {
+          "label": "Workload Isolation",
+          "slug": "pillars/workload-isolation"
+        },
+        {
+          "label": "Platform Scale",
+          "slug": "pillars/platform-scale"
+        },
+        {
+          "label": "CI/CD Automation",
+          "slug": "pillars/cicd-automation"
+        },
+        {
+          "label": "Tenant Management",
+          "slug": "pillars/tenant-management"
+        },
+        {
+          "label": "Observability",
+          "slug": "pillars/observability"
+        },
+        {
+          "label": "Cost Management",
+          "slug": "pillars/cost-management"
+        }
+      ]
+    },
+    {
+      "label": "Reference Architectures",
+      "items": [
+        {
+          "label": "Shared Workspace SaaS",
+          "slug": "reference-architectures/shared-workspace"
+        },
+        {
+          "label": "Per-Tenant Workspace",
+          "slug": "reference-architectures/per-tenant"
+        },
+        {
+          "label": "Managed Hosted Product",
+          "slug": "reference-architectures/managed-hosted"
+        },
+        {
+          "label": "AI Application Architecture",
+          "slug": "reference-architectures/ai-application"
+        },
+        {
+          "label": "Real-Time Data Product",
+          "slug": "reference-architectures/real-time-data"
+        }
+      ]
+    },
+    {
+      "label": "CUJ/Mockups",
+      "items": [
+        {
+          "label": "Common CUJs",
+          "slug": "cuj-mockups/common-cujs"
+        }
+      ]
+    },
+    {
+      "label": "Next Steps & Resources",
+      "items": [
+        {
+          "label": "Starter Kits and Templates",
+          "slug": "resources/starter-kits"
+        },
+        {
+          "label": "Architecture Blueprints",
+          "slug": "resources/blueprints"
+        },
+        {
+          "label": "Program Alignment",
+          "slug": "resources/program-alignment"
+        }
+      ]
+    },
+    {
+      "label": "Appendix",
+      "items": [
         {
           "label": "Integration Requirements",
           "slug": "building-integrations/integration-requirements"
-        }
-      ]
-    },
-    {
-      "label": "SaaS Deployment",
-      "items": [
-        {
-          "label": "Overview",
-          "slug": "saas/overview"
-        },
-        {
-          "label": "Workspace & Multi-Tenancy",
-          "slug": "saas/workspace-multi-tenancy"
-        },
-        {
-          "label": "Product Design",
-          "slug": "saas/product-design"
-        },
-        {
-          "label": "Data Isolation",
-          "slug": "saas/data-isolation"
-        },
-        {
-          "label": "Hub & Spoke Model",
-          "slug": "saas/hub-spoke"
-        },
-        {
-          "label": "Security & Authentication",
-          "slug": "saas/security"
-        },
-        {
-          "label": "Automation",
-          "slug": "saas/automation"
-        },
-        {
-          "label": "Cost Management",
-          "slug": "saas/cost-management"
-        },
-        {
-          "label": "Scale & Limits",
-          "slug": "saas/scale-limits"
         },
         {
           "label": "Building Integrations",
-          "slug": "saas/building-integrations"
-        }
-      ]
-    },
-    {
-      "label": "Managed Hosted",
-      "items": [
-        {
-          "label": "Overview",
-          "slug": "managed-hosted/overview"
-        },
-        {
-          "label": "Workspace & Multi-Tenancy",
-          "slug": "managed-hosted/workspace-multi-tenancy"
-        },
-        {
-          "label": "Product Design",
-          "slug": "managed-hosted/product-design"
-        },
-        {
-          "label": "Data Isolation",
-          "slug": "managed-hosted/data-isolation"
-        },
-        {
-          "label": "Hub & Spoke Model",
-          "slug": "managed-hosted/hub-spoke"
-        },
-        {
-          "label": "Security & Authentication",
-          "slug": "managed-hosted/security"
-        },
-        {
-          "label": "Automation",
-          "slug": "managed-hosted/automation"
-        },
-        {
-          "label": "Cost Management",
-          "slug": "managed-hosted/cost-management"
-        },
-        {
-          "label": "Scale & Limits",
-          "slug": "managed-hosted/scale-limits"
-        },
-        {
-          "label": "Building Integrations",
-          "slug": "managed-hosted/building-integrations"
-        }
-      ]
-    },
-    {
-      "label": "Shipped Deployment",
-      "items": [
-        {
-          "label": "Overview",
-          "slug": "shipped/overview"
-        },
-        {
-          "label": "Workspace & Multi-Tenancy",
-          "slug": "shipped/workspace-multi-tenancy"
-        },
-        {
-          "label": "Product Design",
-          "slug": "shipped/product-design"
-        },
-        {
-          "label": "Data Isolation",
-          "slug": "shipped/data-isolation"
-        },
-        {
-          "label": "Hub & Spoke Model",
-          "slug": "shipped/hub-spoke"
-        },
-        {
-          "label": "Security & Authentication",
-          "slug": "shipped/security"
-        },
-        {
-          "label": "Automation",
-          "slug": "shipped/automation"
-        },
-        {
-          "label": "Cost Management",
-          "slug": "shipped/cost-management"
-        },
-        {
-          "label": "Scale & Limits",
-          "slug": "shipped/scale-limits"
-        },
-        {
-          "label": "Building Integrations",
-          "slug": "shipped/building-integrations"
+          "slug": "building-integrations/building-integrations"
         }
       ]
     }
