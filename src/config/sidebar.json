@@ -4,15 +4,15 @@
       "label": "Introduction",
       "items": [
         {
-          "label": "Purpose of this Framework",
+          "label": "Overview",
           "slug": "introduction/purpose"
         },
         {
-          "label": "Definition of Built On Databricks",
+          "label": "What Built On Databricks Means",
           "slug": "introduction/definition"
         },
         {
-          "label": "Goals",
+          "label": "Key Outcomes",
           "slug": "introduction/goals"
         }
       ]
