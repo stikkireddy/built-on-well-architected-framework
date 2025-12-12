@@ -21,6 +21,14 @@
       "label": "Deployment Models",
       "items": [
         {
+          "label": "Overview",
+          "slug": "deployment-models/overview"
+        },
+        {
+          "label": "SaaS",
+          "slug": "deployment-models/saas"
+        },
+        {
           "label": "Multi-Workspace (Per-Tenant)",
           "slug": "deployment-models/multi-workspace"
         },
@@ -29,7 +37,7 @@
           "slug": "deployment-models/single-workspace"
         },
         {
-          "label": "Partner-Hosted SaaS",
+          "label": "Managed Hosted",
           "slug": "deployment-models/partner-hosted"
         },
         {
