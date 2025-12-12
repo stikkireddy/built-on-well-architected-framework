@@ -55,11 +55,20 @@ Operational overhead is largely the same across both models when best practices 
 
 With proper automation in place, managing hundreds of per-customer workspaces is not significantly more complex than managing a single multi-tenant workspace.
 
-### Isolation
+### Governance and Isolation
 
-Workspace-catalog binding provides a mechanism for controlling which catalogs are accessible from which workspaces. This is an important consideration for both security and compliance.
+Governance is achievable in both models, but the approach differs significantly:
 
-For detailed information on configuring workspace-catalog binding, see the [Databricks documentation](https://docs.databricks.com/aws/en/catalogs/binding).
+- **Workspace-as-boundary**: Provides low-risk governance by default. Each workspace has its own catalog mappings and workspace-level identities, making it easier to enforce per-customer permissions, lineage separation, and catalog visibility.
+- **Shared workspace**: Requires high-precision, policy-driven governance. You must implement fine-grained access control, column/row masking, and careful data isolation across catalogs and schemas.
+
+Unity Catalog makes multi-workspace governance possible without duplication, allowing you to centralize governance while maintaining workspace-level boundaries.
+
+Workspace-catalog binding provides a mechanism for controlling which catalogs are accessible from which workspaces. For detailed information, see the [Databricks documentation](https://docs.databricks.com/aws/en/catalogs/binding).
+
+### Reliability
+
+Workspaces act as natural failure and resource boundaries. In per-customer workspaces, one customer's workload cannot exhaust job service capacity or impact the performance of others. In shared workspaces, consider implementing cluster policies and resource quotas to manage contention and ensure consistent performance across customers.
 
 ### Limits
 
