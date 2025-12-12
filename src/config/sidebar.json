@@ -21,15 +21,20 @@
       "label": "Deployment Models",
       "items": [
         {
-          "label": "Multi-Workspace (Per-Tenant)",
-          "slug": "deployment-models/multi-workspace"
+          "label": "Overview",
+          "slug": "deployment-models/overview"
         },
         {
-          "label": "Single-Workspace (Multi-Tenant)",
-          "slug": "deployment-models/single-workspace"
+          "label": "SaaS",
+          "items": [
+            {
+              "label": "Selecting a Workspace Model: Multi-Tenant or Per-Customer",
+              "slug": "deployment-models/saas"
+            }
+          ]
         },
         {
-          "label": "Partner-Hosted SaaS",
+          "label": "Managed Hosted",
           "slug": "deployment-models/partner-hosted"
         },
         {

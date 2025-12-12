@@ -1,0 +1,92 @@
+---
+title: "Selecting a Workspace Model: Multi-Tenant or Per-Customer"
+description: "Guidance on choosing between multi-tenant and per-customer workspace models for SaaS deployments on Databricks"
+---
+
+When building a SaaS product on Databricks, one of the most critical architectural decisions is whether to deploy a workspace per customer or share a single workspace across multiple customers. This page provides guidance on the key factors to consider when making this decision.
+
+## Key Factors
+
+### Complexity
+
+The complexity of your SaaS offering is often the primary driver in workspace model selection. Consider the following dimensions:
+
+- **Data access patterns**: Read-only use cases are simpler to implement in a multi-tenant model, while read/write capabilities may benefit from per-customer isolation.
+- **Data ownership**: Serving data to customers is straightforward in either model, but Bring-Your-Own-Data (BYOD) scenarios require a workspace per customer.
+- **Analytical sophistication**: Simple dashboards can work well in multi-tenant environments. More advanced capabilities like notebooks, SQL access, or machine learning workloads may warrant per-customer workspaces.
+- **Customization requirements**: Customer-specific configurations, pipelines, or permissions are easier to manage with dedicated workspaces.
+
+### Scale
+
+Both models can scale effectively, but they have different upper bounds:
+
+| Model | Scale |
+|-------|-------|
+| Workspace per customer | Hundreds of customers |
+| Multi-tenant | Thousands of customers |
+
+Choose your model based on your expected customer count and growth trajectory.
+
+### Cost
+
+Databricks does not charge for workspace deployment. Depending on your cloud provider and workspace type (classic versus serverless), there may be some cloud costs associated with networking, but these are typically nominal.
+
+You can leverage economies of scale by placing multiple customers on shared compute resources. However, this approach involves trade-offs:
+
+- **Cost attribution**: Currently tracked at the compute level, which requires compute to be deployed at the appropriate level of granularity (shared, customer-specific, or line-of-business).
+- **Isolation**: Shared compute reduces isolation between customers.
+
+Evaluate whether the cost savings from shared compute justify the added complexity of cost attribution and reduced isolation.
+
+### Bring Your Own Data (BYOD)
+
+If your SaaS product requires customers to bring their own data, a workspace per customer is required. This is because:
+
+- Customer Managed Keys are configured at the workspace level.
+- Data governance and access controls are simpler to implement with dedicated workspaces.
+
+### Operational Overhead
+
+Operational overhead is largely the same across both models when best practices are followed. The key principle is automation:
+
+- All operational tasks should be automated regardless of workspace model.
+- Manual workspace maintenance is strongly discouraged in either approach.
+- Databricks provides full support for infrastructure-as-code tools including Terraform and Databricks Asset Bundles.
+
+With proper automation in place, managing hundreds of per-customer workspaces is not significantly more complex than managing a single multi-tenant workspace.
+
+### Governance and Isolation
+
+Governance is achievable in both models, but the approach differs significantly:
+
+- **Workspace-as-boundary**: Provides low-risk governance by default. Each workspace has its own catalog mappings and workspace-level identities, making it easier to enforce per-customer permissions, lineage separation, and catalog visibility.
+- **Shared workspace**: Requires high-precision, policy-driven governance. You must implement fine-grained access control, column/row masking, and careful data isolation across catalogs and schemas.
+
+Unity Catalog makes multi-workspace governance possible without duplication, allowing you to centralize governance while maintaining workspace-level boundaries.
+
+Workspace-catalog binding provides a mechanism for controlling which catalogs are accessible from which workspaces. For detailed information, see the [Databricks documentation](https://docs.databricks.com/aws/en/catalogs/binding).
+
+### Reliability
+
+Workspaces act as natural failure and resource boundaries. In per-customer workspaces, one customer's workload cannot exhaust job service capacity or impact the performance of others. In shared workspaces, consider implementing cluster policies and resource quotas to manage contention and ensure consistent performance across customers.
+
+### Limits
+
+Be aware that different limits apply at different levels of the Databricks architecture:
+
+- **Metastore level**: Some limits, such as Unity Catalog limits, are enforced at the metastore level and apply across all workspaces.
+- **Workspace level**: Other limits are enforced per workspace.
+
+Review the relevant limits for your expected usage patterns when selecting a workspace model.
+
+## Summary
+
+| Factor | Multi-Tenant | Per-Customer |
+|--------|--------------|--------------|
+| Best for scale | Thousands of customers | Hundreds of customers |
+| BYOD support | No | Yes |
+| Customer Managed Keys | Not supported | Supported |
+| Complexity | Lower for simple use cases | Better for complex requirements |
+| Cost attribution | Requires careful compute design | Simpler at workspace level |
+
+Choose the model that best aligns with your product requirements, customer expectations, and operational capabilities. In many cases, a hybrid approach may be appropriate, where different customer tiers receive different workspace models based on their needs.

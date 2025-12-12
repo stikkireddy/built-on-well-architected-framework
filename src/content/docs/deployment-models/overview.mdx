@@ -1,0 +1,95 @@
+---
+title: Overview
+description: An overview of deployment models for building data and AI products on Databricks
+---
+
+# Deployment Models Overview
+
+When building a data or AI product on Databricks, one of the first architectural decisions is selecting the right deployment model. This choice determines where infrastructure lives, who manages it, and how your customers interact with the platform.
+
+## Deployment Models
+
+### SaaS
+
+In the SaaS model, you (the partner) own and operate the entire Databricks environment—workspaces, compute, storage, and data pipelines. Your customers access your product as a service without needing their own Databricks account.
+
+**Common use cases:**
+- Embedded analytics and dashboards
+- Data products and marketplaces
+- AI/ML-powered applications
+- Customer-facing reporting platforms
+
+**Key characteristics:**
+- You control all infrastructure and operations
+- Customers consume the service, not the platform
+- You are responsible for multi-tenancy, security, and cost management
+
+### Managed Hosted
+
+In the Managed Hosted model, the partner owns and manages the Databricks control plane, but the data plane runs in the customer's cloud account. This approach is ideal for customers who require their data to remain in their own environment while still benefiting from partner-managed operations.
+
+This model follows the [Customer-Managed VPC](https://docs.databricks.com/aws/en/security/network/classic/customer-managed-vpc) pattern in Databricks documentation.
+
+**Common use cases:**
+- Enterprise customers with strict data residency requirements
+- Regulated industries requiring data sovereignty
+- Customers wanting managed services without data leaving their environment
+
+**Key characteristics:**
+- Partner manages the workspace and operations
+- Customer's data stays in their cloud account
+- Combines operational simplicity with data control
+
+### Sidecar / Embedded
+
+In the Sidecar model, partners operate their own SaaS offering that makes API or SDK calls into the customer's Databricks tenant. The partner's application orchestrates workloads—running jobs, executing queries, or building tables—within the customer's environment.
+
+**Common use cases:**
+- Data integration and ETL tools
+- BI and analytics platforms connecting to customer data
+- AI/ML platforms that train models on customer data
+- Data quality and observability tools
+
+**Key characteristics:**
+- Customer owns and manages their Databricks workspace
+- Partner application connects via APIs/SDKs
+- Data processing occurs in the customer's environment
+
+### Customer Managed
+
+In the Customer Managed model, the customer owns and operates everything—their Databricks workspace, infrastructure, and data. The partner provides software, guidance, or templates that the customer deploys and manages themselves.
+
+**Common use cases:**
+- Customers with mature platform teams
+- Highly regulated environments with strict operational controls
+- Organizations requiring full autonomy over their data platform
+
+**Key characteristics:**
+- Customer has full control and responsibility
+- Partner provides enablement rather than operations
+- Maximum flexibility but requires customer expertise
+
+## Comparison
+
+| Factor | SaaS | Managed Hosted | Sidecar | Customer Managed |
+|--------|------|----------------|---------|------------------|
+| Infrastructure ownership | Partner | Partner (control plane) / Customer (data plane) | Customer | Customer |
+| Data location | Partner's environment | Customer's environment | Customer's environment | Customer's environment |
+| Operational responsibility | Partner | Partner | Shared | Customer |
+| Customer Databricks account required | No | No | Yes | Yes |
+| Data residency control | Low | High | High | High |
+| Partner control over platform | High | Medium | Low | None |
+| Implementation complexity | Lower | Medium | Medium | Higher |
+| Customer onboarding effort | Minimal | Moderate | Moderate | Significant |
+
+## Choosing a Model
+
+When selecting a deployment model, consider:
+
+1. **Data residency requirements**: Does your customer's data need to stay in their environment?
+2. **Operational capacity**: Do you want to manage infrastructure, or does the customer prefer to?
+3. **Customer sophistication**: Does the customer have a platform team capable of managing Databricks?
+4. **Regulatory constraints**: Are there compliance requirements dictating where data can reside?
+5. **Scale and economics**: Which model provides the best unit economics for your business?
+
+Many partners offer multiple deployment models to serve different customer segments—SaaS for smaller customers seeking simplicity, and Managed Hosted or Sidecar for enterprise customers with specific requirements.
